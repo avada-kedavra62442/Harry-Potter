@@ -1,0 +1,1 @@
+import{useMemo}from'react';import{usePlayer}from'../player-profile/PlayerContext';export function useProgress(){const{player}=usePlayer();return useMemo(()=>({decisions:player.decisions.length,visited:player.visitedScenes.length,items:player.inventory.length,completed:player.completedStories.length}),[player])}

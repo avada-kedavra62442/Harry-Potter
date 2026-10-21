@@ -1,0 +1,1 @@
+export default function StoryChoice({choice,index,onChoose}){return <button className="story-choice" onClick={()=>onChoose(choice)}><span className="choice-index">0{index+1}</span><span className="choice-copy"><strong>{choice.label}</strong><small>{choice.hint}</small></span><span className="choice-arrow">↗</span></button>}
