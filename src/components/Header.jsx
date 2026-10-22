@@ -1,1 +1,30 @@
-import {useState} from 'react';import {Link,NavLink} from 'react-router-dom';import {useSearch} from '../features/search/SearchContext';const links=[['/explore','Explore'],['/houses','Houses'],['/characters','Characters'],['/archive','Archive'],['/timeline','Timeline'],['/stories','Story']];export default function Header(){const[open,setOpen]=useState(false);const{openSearch}=useSearch();return <header className="site-header"><div className="header-inner"><Link className="brand" to="/"><span className="brand-mark">✦</span><span><strong>The Wizarding Archive</strong><small>A Harry Potter story archive</small></span></Link><button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={()=>setOpen(!open)}><i/><i/><i/></button><nav className={open?'primary-nav is-open':'primary-nav'}>{links.map(([to,label])=><NavLink key={to} to={to} onClick={()=>setOpen(false)} className={({isActive})=>isActive?'nav-link active':'nav-link'}>{label}</NavLink>)}<button className="icon-button search-open" onClick={()=>{openSearch();setOpen(false)}} aria-label="Open search">⌕</button><Link className="nav-cta" to="/journey" onClick={()=>setOpen(false)}>Your journey ↗</Link></nav></div></header>}
+import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { useSearch } from '../features/search/SearchContext';
+
+const links = [
+  ['/characters', 'Characters'],
+  ['/lore', 'Lore'],
+  ['/play', 'Play'],
+  ['/stories', 'Stories'],
+  ['/world', 'World']
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const { openSearch } = useSearch();
+  return <header className="site-header">
+    <div className="header-inner">
+      <Link className="brand" to="/">
+        <span className="brand-mark">✦</span>
+        <span><strong>The Wizarding Archive</strong><small>A Harry Potter story archive</small></span>
+      </Link>
+      <button className="menu-toggle" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}><i /><i /><i /></button>
+      <nav className={open ? 'primary-nav is-open' : 'primary-nav'}>
+        {links.map(([to, label]) => <NavLink key={to} to={to} onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>{label}</NavLink>)}
+        <button className="icon-button search-open" onClick={() => { openSearch(); setOpen(false); }} aria-label="Open search">⌕</button>
+        <Link className="nav-cta" to="/journey" onClick={() => setOpen(false)}>Your journey ↗</Link>
+      </nav>
+    </div>
+  </header>;
+}
